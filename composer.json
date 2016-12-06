@@ -1,5 +1,5 @@
 {
-    "name": "jmolivas/drupal-console-extend",
+    "name": "jmolivas/drupal-console-global-extend",
     "description": "Drupal Console library extend example",
     "type": "drupal-console-library",
     "license": "GPL-2.0+",
