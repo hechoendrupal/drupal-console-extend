@@ -1,0 +1,21 @@
+{
+    "name": "jmolivas/drupal-console-extend",
+    "description": "Drupal Console library extend example",
+    "type": "drupal-console-library",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Jesus Manuel Olivas",
+            "email": "jesus.olivas@gmail.com"
+        }
+    ],
+    "require": {},
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {"Drupal\\Console\\Extend\\": "src"}
+    },
+    "require-dev": {
+        "drupal/console-core": "~1.0"
+    }
+}
