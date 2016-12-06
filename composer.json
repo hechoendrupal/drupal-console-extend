@@ -16,6 +16,12 @@
         "psr-4": {"Drupal\\Console\\GlobalExtend\\": "src"}
     },
     "require-dev": {
-        "drupal/console-core": "~1.0"
+        "drupal/console-core": "~1.0",
+        "composer/installers": "^1.2"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Drupal\\Console\\GlobalExtend\\Plugin\\ScriptHandler::postInstall"
+        ]
     }
 }
