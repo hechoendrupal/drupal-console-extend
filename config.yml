@@ -3,7 +3,7 @@ application:
     commands:
       forced:
         'extend:example':
-          class: '\Drupal\Console\Extend\Command\ExampleCommand'
+          class: '\Drupal\Console\GlobalExtend\Command\ExampleCommand'
         'extend:example:container:aware':
-          class: '\Drupal\Console\Extend\Command\ExampleContainerAwareCommand'
+          class: '\Drupal\Console\GlobalExtend\Command\ExampleContainerAwareCommand'
       name: {}
