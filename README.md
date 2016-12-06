@@ -6,6 +6,7 @@ DrupalConsole global extend example
 ```
 cd ~/.console/
 mkdir extends
+cd extends
 composer require jmolivas/drupal-console-global-extend:dev-master
 ```
 NOTE: Replace `jmolivas/drupal-console-global-extend` with your library.
