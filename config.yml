@@ -4,6 +4,4 @@ application:
       forced:
         'extend:example':
           class: '\Drupal\Console\GlobalExtend\Command\ExampleCommand'
-        'extend:example:container:aware':
-          class: '\Drupal\Console\GlobalExtend\Command\ExampleContainerAwareCommand'
       name: {}

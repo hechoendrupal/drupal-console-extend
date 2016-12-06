@@ -34,7 +34,8 @@ class ExampleCommand extends Command
 
     protected function configure()
     {
-        $this->setName('extend:example');
+        $this->setName('extend:example')
+        ->setDescription('Drupal Console global example ');
     }
 
     /**
