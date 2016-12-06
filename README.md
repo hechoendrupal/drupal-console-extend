@@ -11,7 +11,7 @@ Instructions to extend Drupal Console libraries within a drupal site may vary.
 cd ~/.console/
 mkdir extends
 cd extends
-composer require jmolivas/drupal-console-global-extend:dev-master
+composer require jmolivas/drupal-console-global-extend:dev-master --no-dev
 ```
 NOTE: Replace `jmolivas/drupal-console-global-extend` with your library.
 
