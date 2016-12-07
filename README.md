@@ -1,8 +1,6 @@
-# Drupal Console global extend 
+# Drupal Console extend
 
-This is still a WIP approach to extend DrupalConsole commands globally.
-
-Instructions to extend Drupal Console libraries within a drupal site may vary.
+Instructions to extend Drupal Console adding commands globally.
 
 ## Installing
 ```
