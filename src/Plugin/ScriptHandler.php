@@ -20,6 +20,11 @@ class ScriptHandler {
      */
     public static function postInstall(Event $event) {
         $sync = __DIR__.'/../../vendor/mustangostang/spyc/Spyc.php';
+
+        if(!file_exists($sync)) {
+            return;
+        }
+
         require_once $sync;
 
         $packages = array_keys($event->getComposer()->getPackage()->getRequires());
