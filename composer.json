@@ -13,11 +13,13 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
-        "psr-4": {"Drupal\\Console\\GlobalExtend\\": "src"}
+        "psr-4": {"Drupal\\Console\\GlobalExtend\\": "src"},
+        "files": ["vendor/mustangostang/spyc/Spyc.php"]
     },
     "require-dev": {
         "drupal/console-core": "~1.0",
-        "composer/installers": "^1.2"
+        "composer/installers": "^1.2",
+        "mustangostang/spyc": "^0.6.1"
     },
     "scripts": {
         "post-install-cmd": [

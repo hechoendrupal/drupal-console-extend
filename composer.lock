@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "efa53ed450dcddd0c57de4985785b63a",
-    "content-hash": "5c600dfd7e81d53eeb2525a8b0be0b98",
+    "hash": "0bad9fc6dfc2b187ca98706dd809104b",
+    "content-hash": "3395bc446dc1f15ab2abd8ca52cb1bd2",
     "packages": [],
     "packages-dev": [
         {
@@ -415,6 +415,56 @@
                 "symfony"
             ],
             "time": "2016-11-24 06:04:33"
+        },
+        {
+            "name": "mustangostang/spyc",
+            "version": "0.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mustangostang/spyc.git",
+                "reference": "022532641d61d383fd3ae666982bd46e61e5915e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/022532641d61d383fd3ae666982bd46e61e5915e",
+                "reference": "022532641d61d383fd3ae666982bd46e61e5915e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "Spyc.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mustangostang",
+                    "email": "vlad.andersen@gmail.com"
+                }
+            ],
+            "description": "A simple YAML loader/dumper class for PHP",
+            "homepage": "https://github.com/mustangostang/spyc/",
+            "keywords": [
+                "spyc",
+                "yaml",
+                "yml"
+            ],
+            "time": "2016-10-21 00:03:34"
         },
         {
             "name": "phpseclib/phpseclib",

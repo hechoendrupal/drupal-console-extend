@@ -19,7 +19,32 @@ class ScriptHandler {
      *   The script event.
      */
     public static function postInstall(Event $event) {
-        $extra = $event->getComposer()->getPackage()->getExtra();
-    }
+        $sync = __DIR__.'/../../vendor/mustangostang/spyc/Spyc.php';
+        require_once $sync;
 
+        $packages = array_keys($event->getComposer()->getPackage()->getRequires());
+        if (!$packages) {
+            return;
+        }
+
+        $config = __DIR__.'/../../config.yml';
+        $extendsDirectory = dirname($config);
+        $configurationData = $config?\Spyc::YAMLLoad($config):[];
+
+         foreach ($packages as $package) {
+             $configFile = $extendsDirectory.'/vendor/'.$package.'/config.yml';
+
+             if (is_file($configFile)) {
+                 $configurationData = array_merge_recursive(
+                        $configurationData,
+                        \Spyc::YAMLLoad($configFile)
+                    );}
+         }
+         if ($configurationData) {
+             file_put_contents(
+                 $extendsDirectory . '/extends.yml',
+                 \Spyc::YAMLDump($configurationData, false, 0, true)
+             );
+         }
+    }
 }
