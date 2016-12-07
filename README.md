@@ -6,7 +6,7 @@ Instructions to extend Drupal Console adding commands globally.
 ```
 cd ~/.console/
 composer create-project \
-jmolivas/drupal-console-global-extend:dev-master extend \
+drupal/console-extend:dev-master extend \
 --no-dev \
 --no-interaction
 ```
