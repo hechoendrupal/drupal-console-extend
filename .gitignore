@@ -13,3 +13,6 @@
 
 # Test
 /phpunit.xml
+
+# Project
+extends.yml
