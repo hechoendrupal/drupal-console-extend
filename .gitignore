@@ -15,4 +15,4 @@
 /phpunit.xml
 
 # Project
-extends.yml
+extend.yml
