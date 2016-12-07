@@ -14,7 +14,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
-        "psr-4": {"Drupal\\Console\\GlobalExtend\\": "src"}
+        "psr-4": {"Drupal\\Console\\Extend\\": "src"}
     },
     "require-dev": {
         "drupal/console-core": "~1.0",
@@ -22,10 +22,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "Drupal\\Console\\GlobalExtend\\Plugin\\ScriptHandler::dump"
+            "Drupal\\Console\\Extend\\Plugin\\ScriptHandler::dump"
         ],
         "post-update-cmd": [
-            "Drupal\\Console\\GlobalExtend\\Plugin\\ScriptHandler::dump"
+            "Drupal\\Console\\Extend\\Plugin\\ScriptHandler::dump"
         ]
     }
 }

@@ -5,7 +5,7 @@
  * Contains \Drupal\Console\Extend\Command\ExampleCommand
  */
 
-namespace Drupal\Console\GlobalExtend\Command;
+namespace Drupal\Console\Extend\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -15,7 +15,7 @@ use Drupal\Console\Style\DrupalStyle;
 
 /**
  * Class ExampleCommand
- * @package Drupal\Console\GlobalExtend\Command
+ * @package Drupal\Console\Extend\Command
  */
 class ExampleCommand extends Command
 {

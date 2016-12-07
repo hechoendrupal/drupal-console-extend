@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains Drupal\Console\GlobalExtend\Plugin\ScriptHandler.
+ * Contains Drupal\Console\Extend\Plugin\ScriptHandler.
  */
 
-namespace Drupal\Console\GlobalExtend\Plugin;
+namespace Drupal\Console\Extend\Plugin;
 
 use Composer\Script\Event;
 use Composer\Util\ProcessExecutor;
