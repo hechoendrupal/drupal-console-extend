@@ -38,12 +38,16 @@ class ScriptHandler {
 
          foreach ($packages as $package) {
              $configFile = $extendsDirectory.'/vendor/'.$package.'/config.yml';
-
              if (is_file($configFile)) {
+                 $libraryData = \Spyc::YAMLLoad($configFile);
+                 if (!static::isValid($libraryData)) {
+                     continue;
+                 }
                  $configurationData = array_merge_recursive(
-                        $configurationData,
-                        \Spyc::YAMLLoad($configFile)
-                    );}
+                    $configurationData,
+                    $libraryData
+                 );
+             }
          }
          if ($configurationData) {
              file_put_contents(
@@ -51,5 +55,21 @@ class ScriptHandler {
                  \Spyc::YAMLDump($configurationData, false, 0, true)
              );
          }
+    }
+
+    public static function isValid($libraryData) {
+        if (!array_key_exists('application', $libraryData)) {
+            return false;
+        }
+
+        if (!array_key_exists('autowire', $libraryData['application'])) {
+            return false;
+        }
+
+        if (!array_key_exists('commands', $libraryData['application']['autowire'])) {
+            return false;
+        }
+
+        return true;
     }
 }
