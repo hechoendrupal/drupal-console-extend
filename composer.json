@@ -15,8 +15,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
-        "psr-4": {"Drupal\\Console\\GlobalExtend\\": "src"},
-        "files": ["vendor/mustangostang/spyc/Spyc.php"]
+        "psr-4": {"Drupal\\Console\\GlobalExtend\\": "src"}
     },
     "require-dev": {
         "drupal/console-core": "~1.0",
@@ -24,7 +23,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "Drupal\\Console\\GlobalExtend\\Plugin\\ScriptHandler::postInstall"
+            "Drupal\\Console\\GlobalExtend\\Plugin\\ScriptHandler::dump"
+        ],
+        "post-update-cmd": [
+            "Drupal\\Console\\GlobalExtend\\Plugin\\ScriptHandler::dump"
         ]
     }
 }
