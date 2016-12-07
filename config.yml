@@ -1,0 +1,7 @@
+application:
+  autowire:
+    commands:
+      forced:
+        'extend:example':
+          class: '\Drupal\Console\GlobalExtend\Command\ExampleCommand'
+      name: {}
