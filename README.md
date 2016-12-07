@@ -8,7 +8,7 @@ Instructions to extend Drupal Console libraries within a drupal site may vary.
 ```
 cd ~/.console/
 composer create-project \
-jmolivas/drupal-console-global-extend:dev-master extends \ 
+jmolivas/drupal-console-global-extend:dev-master extends \
 --no-dev \
 --keep-vcs \
 --no-interaction
