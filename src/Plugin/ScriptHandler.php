@@ -34,11 +34,11 @@ class ScriptHandler
         }
 
         $config = __DIR__.'/../../config.yml';
-        $extendsDirectory = dirname($config);
+        $directory = dirname($config);
         $configurationData = file_exists($config)?\Spyc::YAMLLoad($config):[];
 
         foreach ($packages as $package) {
-            $configFile = $extendsDirectory.'/vendor/'.$package.'/config.yml';
+            $configFile = $directory.'/vendor/'.$package.'/config.yml';
             if (is_file($configFile)) {
                 $libraryData = \Spyc::YAMLLoad($configFile);
                 if (!static::isValid($libraryData)) {
@@ -52,7 +52,7 @@ class ScriptHandler
         }
         if ($configurationData) {
             file_put_contents(
-                $extendsDirectory . '/extends.yml',
+                $directory . '/extend.yml',
                 \Spyc::YAMLDump($configurationData, false, 0, true)
             );
         }
