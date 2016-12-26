@@ -9,6 +9,7 @@ namespace Drupal\Console\Extend\Plugin;
 
 use Composer\Script\Event;
 use Composer\Util\ProcessExecutor;
+use Eureka\Component\Yaml\Yaml;
 
 class ScriptHandler
 {
@@ -20,13 +21,7 @@ class ScriptHandler
      */
     public static function dump(Event $event)
     {
-        $sync = __DIR__.'/../../vendor/mustangostang/spyc/Spyc.php';
-
-        if (!file_exists($sync)) {
-            return;
-        }
-
-        include_once $sync;
+        $yaml = new Yaml();
 
         $packages = array_keys($event->getComposer()->getPackage()->getRequires());
         if (!$packages) {
@@ -35,12 +30,12 @@ class ScriptHandler
 
         $config = __DIR__.'/../../config.yml';
         $directory = dirname($config);
-        $configurationData = file_exists($config)?\Spyc::YAMLLoad($config):[];
+        $configurationData = file_exists($config)?$yaml->load($config):[];
 
         foreach ($packages as $package) {
             $configFile = $directory.'/vendor/'.$package.'/config.yml';
             if (is_file($configFile)) {
-                $libraryData = \Spyc::YAMLLoad($configFile);
+                $libraryData = $yaml->load($configFile);
                 if (!static::isValid($libraryData)) {
                     continue;
                 }
@@ -53,7 +48,7 @@ class ScriptHandler
         if ($configurationData) {
             file_put_contents(
                 $directory . '/extend.yml',
-                \Spyc::YAMLDump($configurationData, false, 0, true)
+                $yaml->dump($configurationData, false, 0, true)
             );
         }
     }
