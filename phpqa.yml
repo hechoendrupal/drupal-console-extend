@@ -36,7 +36,7 @@ application:
       arguments:
         - '-n'
     phpcs:
-      enabled: true
+      enabled: false
       exception: false
       options:
         standard: PSR2
@@ -45,7 +45,7 @@ application:
       arguments:
         - '-n'
     phpmd:
-      enabled: true
+      enabled: false
       exception: false
       options:
       arguments:
@@ -54,16 +54,16 @@ application:
         - 'text'
         - 'cleancode,codesize,unusedcode,naming,controversial,design'
     phploc:
-      enabled: true
+      enabled: false
       exception: false
     phpcpd:
-      enabled: true
+      enabled: false
       exception: false
     phpdcd:
-      enabled: true
+      enabled: false
       exception: false
     phpunit:
-      enabled: true
+      enabled: false
       exception: true
       file:
         configuration: phpunit.xml.dist
