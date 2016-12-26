@@ -2,7 +2,7 @@
 
 Instructions to extend Drupal Console adding commands globally.
 
-## Create `~/.console/` directory (if not created already)
+### Create `~/.console/` directory
 Execute the `init` command and select `/Users/YOUR_USER_NAME/.console/` when asked for destination.
 ```
 drupal init
@@ -10,7 +10,7 @@ drupal init
 NOTES:
 * For instructions about installing the [Drupal Console Launcher](https://github.com/hechoendrupal/DrupalConsole/#update-drupalconsole-launcher)
 
-## Install this project:
+### Install this project:
 ```
 cd ~/.console/
 
@@ -20,7 +20,7 @@ drupal/console-extend:dev-master extend \
 --no-interaction
 ```
 
-## Update this project
+### Update this project
 ```
 cd ~/.console/extend
 
