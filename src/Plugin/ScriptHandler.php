@@ -14,6 +14,10 @@ use Eureka\Component\Yaml\Yaml;
 class ScriptHandler
 {
     /**
+     * @var array configurationData
+     */
+    public static $configurationData;
+    /**
      * Register
      *
      * @param \Composer\Script\Event $event
@@ -28,9 +32,13 @@ class ScriptHandler
             return;
         }
 
-        $config = __DIR__.'/../../config.yml';
-        $directory = dirname($config);
-        $configurationData = file_exists($config)?$yaml->load($config):[];
+        $directory = realpath(__DIR__.'/../../');
+
+        $configFile = __DIR__.'/../../console.config.yml';
+        $servicesFile = __DIR__.'/../../console.services.yml';
+
+        $configData = static::validateConfigFile($configFile, $yaml);
+        $servicesData = static::validateServicesFile($servicesFile, $yaml);
 
         foreach ($packages as $package) {
             $packageDirectory = $directory.'/vendor/'.$package;
@@ -39,41 +47,53 @@ class ScriptHandler
             }
 
             $composerFile = $packageDirectory.'/composer.json';
-            if (!is_file($composerFile)) {
-                continue;
-            }
-
             if (!static::isValidPackageType($composerFile)) {
                 continue;
             }
 
-            $configFile = $packageDirectory.'/config.yml';
-            if (!is_file($configFile)) {
-                continue;
+            $configFile = $packageDirectory.'/console.config.yml';
+            if ($packageConfigData = static::validateConfigFile($configFile, $yaml)) {
+                $configData = array_merge_recursive(
+                    $configData,
+                    $packageConfigData
+                );
             }
 
-            $libraryData = $yaml->load($configFile);
-            if (!static::isValidAutoWireData($libraryData)) {
-                continue;
+            $servicesFile = $packageDirectory.'/console.services.yml';
+            if ($packageServicesData = static::validateServicesFile($servicesFile, $yaml)) {
+                $servicesData = array_merge_recursive(
+                    $servicesData,
+                    $packageServicesData
+                );
             }
+        }
 
-            $configurationData = array_merge_recursive(
-                $configurationData,
-                $libraryData
+        if ($configData) {
+            file_put_contents(
+                $directory . '/extend.config.yml',
+                $yaml->dump($configData, false, 0, true)
             );
         }
 
-        if ($configurationData) {
+        if ($servicesData) {
             file_put_contents(
-                $directory . '/extend.yml',
-                $yaml->dump($configurationData, false, 0, true)
+                $directory . '/extend.services.yml',
+                $yaml->dump($servicesData, false, 0, true)
             );
         }
     }
 
     public static function isValidPackageType($composerFile)
     {
+        if (!is_file($composerFile)) {
+            return false;
+        }
+
         $composerContent = json_decode(file_get_contents($composerFile), true);
+        if (!$composerContent) {
+            return false;
+        }
+
         if (!array_key_exists('type', $composerContent)) {
             return false;
         }
@@ -82,20 +102,41 @@ class ScriptHandler
         return $packageType === 'drupal-console-library';
     }
 
-    public static function isValidAutoWireData($libraryData)
+    public static function validateConfigFile($configFile, Yaml $yaml)
     {
-        if (!array_key_exists('application', $libraryData)) {
-            return false;
+        if (!is_file($configFile)) {
+            return [];
         }
 
-        if (!array_key_exists('autowire', $libraryData['application'])) {
-            return false;
+        $packageConfigurationData = $yaml->load($configFile);
+
+        if (!array_key_exists('application', $packageConfigurationData)) {
+            return [];
         }
 
-        if (!array_key_exists('commands', $libraryData['application']['autowire'])) {
-            return false;
+        if (!array_key_exists('autowire', $packageConfigurationData['application'])) {
+            return [];
         }
 
-        return true;
+        if (!array_key_exists('commands', $packageConfigurationData['application']['autowire'])) {
+            return [];
+        }
+
+        return $packageConfigurationData;
+    }
+
+    public static function validateServicesFile($servicesFile, Yaml $yaml)
+    {
+        if (!is_file($servicesFile)) {
+            return [];
+        }
+
+        $packageServicesData = $yaml->load($servicesFile);
+
+        if (!array_key_exists('services', $packageServicesData)) {
+            return [];
+        }
+
+        return $packageServicesData;
     }
 }
