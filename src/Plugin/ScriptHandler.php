@@ -66,7 +66,8 @@ class ScriptHandler
 
         if ($configData) {
             file_put_contents(
-                $directory . '/extend.config.yml',
+//                $directory . '/extend.config.yml',
+                $directory . '/extend.yml',
                 $yaml->dump($configData, false, 0, true)
             );
         }
