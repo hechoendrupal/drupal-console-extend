@@ -15,4 +15,5 @@
 /phpunit.xml
 
 # Project
-extend.yml
+extend.config.yml
+extend.services.yml
