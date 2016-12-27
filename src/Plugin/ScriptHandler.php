@@ -33,18 +33,36 @@ class ScriptHandler
         $configurationData = file_exists($config)?$yaml->load($config):[];
 
         foreach ($packages as $package) {
-            $configFile = $directory.'/vendor/'.$package.'/config.yml';
-            if (is_file($configFile)) {
-                $libraryData = $yaml->load($configFile);
-                if (!static::isValid($libraryData)) {
-                    continue;
-                }
-                $configurationData = array_merge_recursive(
-                    $configurationData,
-                    $libraryData
-                );
+            $packageDirectory = $directory.'/vendor/'.$package;
+            if (!is_dir($packageDirectory)) {
+                continue;
             }
+
+            $composerFile = $packageDirectory.'/composer.json';
+            if (!is_file($composerFile)) {
+                continue;
+            }
+
+            if (!static::isValidPackageType($composerFile)) {
+                continue;
+            }
+
+            $configFile = $packageDirectory.'/config.yml';
+            if (!is_file($configFile)) {
+                continue;
+            }
+
+            $libraryData = $yaml->load($configFile);
+            if (!static::isValidAutoWireData($libraryData)) {
+                continue;
+            }
+
+            $configurationData = array_merge_recursive(
+                $configurationData,
+                $libraryData
+            );
         }
+
         if ($configurationData) {
             file_put_contents(
                 $directory . '/extend.yml',
@@ -53,7 +71,18 @@ class ScriptHandler
         }
     }
 
-    public static function isValid($libraryData)
+    public static function isValidPackageType($composerFile)
+    {
+        $composerContent = json_decode(file_get_contents($composerFile), true);
+        if (!array_key_exists('type', $composerContent)) {
+            return false;
+        }
+        $packageType = $composerContent['type'];
+
+        return $packageType === 'drupal-console-library';
+    }
+
+    public static function isValidAutoWireData($libraryData)
     {
         if (!array_key_exists('application', $libraryData)) {
             return false;
