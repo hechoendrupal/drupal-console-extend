@@ -14,10 +14,6 @@ use Eureka\Component\Yaml\Yaml;
 class ScriptHandler
 {
     /**
-     * @var array configurationData
-     */
-    public static $configurationData;
-    /**
      * Register
      *
      * @param \Composer\Script\Event $event
@@ -83,6 +79,11 @@ class ScriptHandler
         }
     }
 
+    /**
+     * @param string $composerFile
+     *
+     * @return bool
+     */
     public static function isValidPackageType($composerFile)
     {
         if (!is_file($composerFile)) {
@@ -102,6 +103,12 @@ class ScriptHandler
         return $packageType === 'drupal-console-library';
     }
 
+    /**
+     * @param string $configFile
+     * @param Yaml $yaml
+     *
+     * @return array
+     */
     public static function validateConfigFile($configFile, Yaml $yaml)
     {
         if (!is_file($configFile)) {
@@ -125,6 +132,12 @@ class ScriptHandler
         return $packageConfigurationData;
     }
 
+    /**
+     * @param string $servicesFile
+     * @param Yaml $yaml
+     *
+     * @return array
+     */
     public static function validateServicesFile($servicesFile, Yaml $yaml)
     {
         if (!is_file($servicesFile)) {
