@@ -15,6 +15,7 @@ use Drupal\Console\Style\DrupalStyle;
 
 /**
  * Class ExampleCommand
+ *
  * @package Drupal\Console\Extend\Command
  */
 class ExampleCommand extends Command

@@ -105,7 +105,7 @@ class ScriptHandler
 
     /**
      * @param string $configFile
-     * @param Yaml $yaml
+     * @param Yaml   $yaml
      *
      * @return array
      */
@@ -134,7 +134,7 @@ class ScriptHandler
 
     /**
      * @param string $servicesFile
-     * @param Yaml $yaml
+     * @param Yaml   $yaml
      *
      * @return array
      */
