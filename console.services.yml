@@ -1,4 +1,4 @@
-services:
+#services:
 #  console.extend_example:
 #    class: \Drupal\Console\Extend\Command\ExampleCommand
 #    tags:
