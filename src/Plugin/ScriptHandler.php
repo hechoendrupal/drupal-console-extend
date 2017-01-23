@@ -66,15 +66,14 @@ class ScriptHandler
 
         if ($configData) {
             file_put_contents(
-//                $directory . '/extend.config.yml',
-                $directory . '/extend.yml',
+                $directory . '/extend.console.config.yml',
                 $yaml->dump($configData, false, 0, true)
             );
         }
 
         if ($servicesData) {
             file_put_contents(
-                $directory . '/extend.services.yml',
+                $directory . '/extend.console.services.yml',
                 $yaml->dump($servicesData, false, 0, true)
             );
         }
