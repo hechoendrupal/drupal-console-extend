@@ -9,7 +9,8 @@ namespace Drupal\Console\Extend\Plugin;
 
 use Composer\Script\Event;
 use Composer\Util\ProcessExecutor;
-use Eureka\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Yaml;
+use Drupal\Console\Extend\Utils\ExtendExtensionManager;
 
 class ScriptHandler
 {
@@ -21,135 +22,33 @@ class ScriptHandler
      */
     public static function dump(Event $event)
     {
-        $yaml = new Yaml();
-
-        $packages = array_keys($event->getComposer()->getPackage()->getRequires());
-        if (!$packages) {
-            return;
-        }
+        $extendExtensionManager = new ExtendExtensionManager();
 
         $directory = realpath(__DIR__.'/../../');
-
         $configFile = __DIR__.'/../../console.config.yml';
         $servicesFile = __DIR__.'/../../console.services.yml';
+        $composerFile = __DIR__.'/../../composer.json';
 
-        $configData = static::validateConfigFile($configFile, $yaml);
-        $servicesData = static::validateServicesFile($servicesFile, $yaml);
+        $extendExtensionManager->addConfigFile($configFile);
+        $extendExtensionManager->addServicesFile($servicesFile);
+        $extendExtensionManager->processComposerFile($directory, $composerFile);
+        $extendExtensionManager->processProjectPackages($directory);
 
-        foreach ($packages as $package) {
-            $packageDirectory = $directory.'/vendor/'.$package;
-            if (!is_dir($packageDirectory)) {
-                continue;
-            }
+        //        $packages = array_keys($event->getComposer()->getPackage()->getRequires());
+        //        $extendExtensionManager->processPackages($directory, $packages);
 
-            $composerFile = $packageDirectory.'/composer.json';
-            if (!static::isValidPackageType($composerFile)) {
-                continue;
-            }
-
-            $configFile = $packageDirectory.'/console.config.yml';
-            if ($packageConfigData = static::validateConfigFile($configFile, $yaml)) {
-                $configData = array_merge_recursive(
-                    $configData,
-                    $packageConfigData
-                );
-            }
-
-            $servicesFile = $packageDirectory.'/console.services.yml';
-            if ($packageServicesData = static::validateServicesFile($servicesFile, $yaml)) {
-                $servicesData = array_merge_recursive(
-                    $servicesData,
-                    $packageServicesData
-                );
-            }
-        }
-
-        if ($configData) {
+        if ($configData = $extendExtensionManager->getConfigData()) {
             file_put_contents(
                 $directory . '/extend.console.config.yml',
-                $yaml->dump($configData, false, 0, true)
+                Yaml::dump($configData, 6, 2)
             );
         }
 
-        if ($servicesData) {
+        if ($servicesData = $extendExtensionManager->getServicesData()) {
             file_put_contents(
                 $directory . '/extend.console.services.yml',
-                $yaml->dump($servicesData, false, 0, true)
+                Yaml::dump($servicesData, 4, 2)
             );
         }
-    }
-
-    /**
-     * @param string $composerFile
-     *
-     * @return bool
-     */
-    public static function isValidPackageType($composerFile)
-    {
-        if (!is_file($composerFile)) {
-            return false;
-        }
-
-        $composerContent = json_decode(file_get_contents($composerFile), true);
-        if (!$composerContent) {
-            return false;
-        }
-
-        if (!array_key_exists('type', $composerContent)) {
-            return false;
-        }
-        $packageType = $composerContent['type'];
-
-        return $packageType === 'drupal-console-library';
-    }
-
-    /**
-     * @param string $configFile
-     * @param Yaml   $yaml
-     *
-     * @return array
-     */
-    public static function validateConfigFile($configFile, Yaml $yaml)
-    {
-        if (!is_file($configFile)) {
-            return [];
-        }
-
-        $packageConfigurationData = $yaml->load($configFile);
-
-        if (!array_key_exists('application', $packageConfigurationData)) {
-            return [];
-        }
-
-        if (!array_key_exists('autowire', $packageConfigurationData['application'])) {
-            return [];
-        }
-
-        if (!array_key_exists('commands', $packageConfigurationData['application']['autowire'])) {
-            return [];
-        }
-
-        return $packageConfigurationData;
-    }
-
-    /**
-     * @param string $servicesFile
-     * @param Yaml   $yaml
-     *
-     * @return array
-     */
-    public static function validateServicesFile($servicesFile, Yaml $yaml)
-    {
-        if (!is_file($servicesFile)) {
-            return [];
-        }
-
-        $packageServicesData = $yaml->load($servicesFile);
-
-        if (!array_key_exists('services', $packageServicesData)) {
-            return [];
-        }
-
-        return $packageServicesData;
     }
 }
