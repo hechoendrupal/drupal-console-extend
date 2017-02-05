@@ -112,64 +112,26 @@ class ExtendExtensionManager
         $finder = new Finder();
         $finder->files()
             ->name('composer.json')
+            ->contains('drupal-console-library')
             ->in($directory);
 
         foreach ($finder as $file) {
-            echo $file->getPathName() . PHP_EOL;
+            $this->processComposerFile($file->getPathName());
         }
     }
 
     /**
-     * @param $directory
      * @param $composerFile
      */
-    public function processComposerFile($directory, $composerFile)
+    private function processComposerFile($composerFile)
     {
-        if (!is_file($composerFile)) {
-            return;
-        }
+        $packageDirectory = dirname($composerFile);
 
-        $composerContent = json_decode(file_get_contents($composerFile), true);
-        if (!$composerContent) {
-            return;
-        }
+        $configFile = $packageDirectory.'/console.config.yml';
+        $this->addConfigFile($configFile);
 
-        if (!array_key_exists('require', $composerContent)) {
-            return;
-        }
-
-        $packages = $composerContent['require'];
-
-        if (!$packages) {
-            return;
-        }
-
-        $this->processPackages($directory, $packages);
-    }
-
-    /**
-     * @param $directory
-     * @param $packages
-     */
-    public function processPackages($directory, $packages)
-    {
-        foreach ($packages as $package) {
-            $packageDirectory = $directory.'/vendor/'.$package;
-            if (!is_dir($packageDirectory)) {
-                continue;
-            }
-
-            $composerFile = $packageDirectory.'/composer.json';
-            if (!$this->isValidPackageType($composerFile)) {
-                continue;
-            }
-
-            $configFile = $packageDirectory.'/console.config.yml';
-            $this->addConfigFile($configFile);
-
-            $servicesFile = $packageDirectory.'/console.services.yml';
-            $this->addServicesFile($servicesFile);
-        }
+        $servicesFile = $packageDirectory.'/console.services.yml';
+        $this->addServicesFile($servicesFile);
     }
 
     /**
