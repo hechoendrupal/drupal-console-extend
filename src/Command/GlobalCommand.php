@@ -36,7 +36,7 @@ class GlobalCommand extends Command
     protected function configure()
     {
         $this->setName('extend:global')
-            ->setDescription('Drupal Console global example ');
+            ->setDescription('Drupal Console global example');
     }
 
     /**
@@ -52,7 +52,6 @@ class GlobalCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new DrupalStyle($input, $output);
-        $io->commentBlock('Extend example command.');
-        $io->warning('This is a warning');
+        $io->commentBlock('Drupal Console global example.');
     }
 }
