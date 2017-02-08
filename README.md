@@ -14,9 +14,10 @@ NOTES: For instructions about installing the [Drupal Console Launcher](https://g
 cd ~/.console/
 
 composer create-project \
-drupal/console-extend:dev-master extend \
+drupal/console-extend extend \
 --no-interaction
 ```
+NOTE: You can use `--keep-vcs` to prevent deletion of `.git` directory.
 
 ### Update this project
 ```
