@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1915817b156713c220f3fe9273f613b",
+    "content-hash": "c2e259a7e0c53c55b5cca3d9ebc0e88b",
     "packages": [
         {
             "name": "drupal/console-extend-example",
-            "version": "dev-master",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hechoendrupal/drupal-console-extend-example.git",
@@ -40,20 +40,20 @@
                 }
             ],
             "description": "Drupal Console library extend example",
-            "time": "2017-02-08 18:50:43"
+            "time": "2017-02-08T18:50:43+00:00"
         },
         {
             "name": "drupal/console-extend-plugin",
-            "version": "dev-master",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hechoendrupal/drupal-console-extend-plugin.git",
-                "reference": "a4742549c31e1db33134d8b0bc2fbe74296d3eef"
+                "reference": "e9610bc0422e748988d5480fefdda6768c8de812"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-extend-plugin/zipball/a4742549c31e1db33134d8b0bc2fbe74296d3eef",
-                "reference": "a4742549c31e1db33134d8b0bc2fbe74296d3eef",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-extend-plugin/zipball/e9610bc0422e748988d5480fefdda6768c8de812",
+                "reference": "e9610bc0422e748988d5480fefdda6768c8de812",
                 "shasum": ""
             },
             "require": {
@@ -81,7 +81,7 @@
                 }
             ],
             "description": "Drupal Console Extend Plugin",
-            "time": "2017-02-08 07:38:07"
+            "time": "2017-02-08T18:36:18+00:00"
         },
         {
             "name": "symfony/finder",
@@ -185,10 +185,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "drupal/console-extend-plugin": 20,
-        "drupal/console-extend-example": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

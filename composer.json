@@ -9,8 +9,8 @@
         }
     ],
     "require": {
-        "drupal/console-extend-plugin":"dev-master",
-        "drupal/console-extend-example": "dev-master"
+        "drupal/console-extend-plugin":"~0",
+        "drupal/console-extend-example": "~0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
