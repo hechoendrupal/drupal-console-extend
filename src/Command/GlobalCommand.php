@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\Console\Extend\Command\ExampleCommand
+ * Contains \Drupal\Console\Extend\Command\GlobalCommand
  */
 
 namespace Drupal\Console\Extend\Command;
@@ -18,7 +18,7 @@ use Drupal\Console\Core\Style\DrupalStyle;
  *
  * @package Drupal\Console\Extend\Command
  */
-class ExampleCommand extends Command
+class GlobalCommand extends Command
 {
     use CommandTrait;
     /**
@@ -35,7 +35,7 @@ class ExampleCommand extends Command
 
     protected function configure()
     {
-        $this->setName('extend:example')
+        $this->setName('extend:global')
             ->setDescription('Drupal Console global example ');
     }
 

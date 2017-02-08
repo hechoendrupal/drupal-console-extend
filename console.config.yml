@@ -1,9 +1,0 @@
-#application:
-#  autowire:
-#    commands:
-#      forced:
-#        'extend:example':
-#          class: '\Drupal\Console\Extend\Command\ExampleCommand'
-#      name:
-#        'extend:example':
-#          class: '\Drupal\Console\Extend\Command\ExampleCommand'

@@ -1,6 +1,6 @@
 {
     "name": "drupal/console-extend",
-    "description": "Drupal Console Extend",
+    "description": "Drupal Console Extend Template",
     "license": "GPL-2.0+",
     "authors": [
         {
@@ -9,23 +9,9 @@
         }
     ],
     "require": {
-        "symfony/yaml": ">=2.7 <3.0",
-        "symfony/finder": ">=2.7 <3.0"
+        "drupal/console-extend-plugin":"dev-master",
+        "drupal/console-extend-example": "dev-master"
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "autoload": {
-        "psr-4": {"Drupal\\Console\\Extend\\": "src"}
-    },
-    "require-dev": {
-        "composer/installers": "^1.2"
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "Drupal\\Console\\Extend\\Plugin\\ScriptHandler::dump"
-        ],
-        "post-update-cmd": [
-            "Drupal\\Console\\Extend\\Plugin\\ScriptHandler::dump"
-        ]
-    }
+    "prefer-stable": true
 }

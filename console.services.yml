@@ -1,5 +1,5 @@
-#services:
-#  console.extend_example:
-#    class: \Drupal\Console\Extend\Command\ExampleCommand
-#    tags:
-#      - { name: drupal.command }
+services:
+ console.extend_global:
+   class: \Drupal\Console\Extend\Command\GlobalCommand
+   tags:
+     - { name: drupal.command }
