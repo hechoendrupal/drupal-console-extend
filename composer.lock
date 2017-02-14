@@ -44,16 +44,16 @@
         },
         {
             "name": "drupal/console-extend-plugin",
-            "version": "0.3.0",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hechoendrupal/drupal-console-extend-plugin.git",
-                "reference": "f1d3f76793f5fdcab089904a0b666968a5ff2296"
+                "reference": "df2396782960335d18a8e5eb6ab630a37ca5f493"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-extend-plugin/zipball/f1d3f76793f5fdcab089904a0b666968a5ff2296",
-                "reference": "f1d3f76793f5fdcab089904a0b666968a5ff2296",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-extend-plugin/zipball/df2396782960335d18a8e5eb6ab630a37ca5f493",
+                "reference": "df2396782960335d18a8e5eb6ab630a37ca5f493",
                 "shasum": ""
             },
             "require": {
@@ -81,7 +81,7 @@
                 }
             ],
             "description": "Drupal Console Extend Plugin",
-            "time": "2017-02-14T04:03:16+00:00"
+            "time": "2017-02-14T08:38:49+00:00"
         },
         {
             "name": "symfony/finder",
