@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "drupal/console-extend-example",
-            "version": "0.1.0",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hechoendrupal/drupal-console-extend-example.git",
-                "reference": "33c489a935231ebc7c3bb9fb0365189cb3e2aedf"
+                "reference": "2eddd46992e7019162387bac80b045ce45f4fdc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-extend-example/zipball/33c489a935231ebc7c3bb9fb0365189cb3e2aedf",
-                "reference": "33c489a935231ebc7c3bb9fb0365189cb3e2aedf",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-extend-example/zipball/2eddd46992e7019162387bac80b045ce45f4fdc3",
+                "reference": "2eddd46992e7019162387bac80b045ce45f4fdc3",
                 "shasum": ""
             },
             "require-dev": {
@@ -40,20 +40,20 @@
                 }
             ],
             "description": "Drupal Console library extend example",
-            "time": "2017-02-08T18:50:43+00:00"
+            "time": "2017-02-14T04:59:22+00:00"
         },
         {
             "name": "drupal/console-extend-plugin",
-            "version": "0.1.0",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hechoendrupal/drupal-console-extend-plugin.git",
-                "reference": "e9610bc0422e748988d5480fefdda6768c8de812"
+                "reference": "f1d3f76793f5fdcab089904a0b666968a5ff2296"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-extend-plugin/zipball/e9610bc0422e748988d5480fefdda6768c8de812",
-                "reference": "e9610bc0422e748988d5480fefdda6768c8de812",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-extend-plugin/zipball/f1d3f76793f5fdcab089904a0b666968a5ff2296",
+                "reference": "f1d3f76793f5fdcab089904a0b666968a5ff2296",
                 "shasum": ""
             },
             "require": {
@@ -81,7 +81,7 @@
                 }
             ],
             "description": "Drupal Console Extend Plugin",
-            "time": "2017-02-08T18:36:18+00:00"
+            "time": "2017-02-14T04:03:16+00:00"
         },
         {
             "name": "symfony/finder",
