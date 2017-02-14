@@ -3,4 +3,4 @@
 
 # Project
 extend.console.config.yml
-extend.console.services.yml
+extend.console.*.yml
